@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lo-Fi Studio Privacy Policy — how we handle data when using the Pinterest API and other platforms." />
+  <title>Privacy Policy — Lo-Fi Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:    #0f0f14;
+      --bg2:   #16161f;
+      --amber: #f0a500;
+      --text:  #e8e4d9;
+      --muted: #8b8575;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.8;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,15,20,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #2a2a38;
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { font-size: 1.1rem; font-weight: bold; color: var(--amber); }
+    nav a { color: var(--muted); font-family: sans-serif; font-size: .9rem; text-decoration: none; }
+    nav a:hover { color: var(--text); }
+
+    main { max-width: 760px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+    .meta { font-family: sans-serif; font-size: .85rem; color: var(--muted); margin-bottom: 3rem; }
+
+    h1 { font-size: 2.2rem; color: #fff; margin-bottom: .5rem; }
+    h2 { font-size: 1.3rem; color: var(--amber); margin: 2.5rem 0 .8rem; }
+    h3 { font-size: 1.05rem; color: #fff; margin: 1.8rem 0 .5rem; }
+
+    p { color: var(--muted); margin-bottom: 1rem; }
+    ul, ol { color: var(--muted); padding-left: 1.6rem; margin-bottom: 1rem; }
+    li { margin-bottom: .4rem; }
+
+    a { color: var(--amber); }
+    a:hover { color: #ffcc55; }
+
+    .highlight {
+      background: #1e1e2a; border-left: 3px solid var(--amber);
+      padding: 1rem 1.2rem; border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0; color: var(--text); font-size: .95rem;
+    }
+
+    footer {
+      background: #16161f; border-top: 1px solid #2a2a38;
+      padding: 2rem; text-align: center;
+    }
+    footer p { font-family: sans-serif; font-size: .85rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">🎵 Lo-Fi Studio</a>
+    <a href="index.html">← Back to Home</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: June 7, 2026 &nbsp;·&nbsp; Effective immediately</p>
+
+  <div class="highlight">
+    <strong>Summary:</strong> Lo-Fi Studio is an open-source developer tool. We do not sell, share, or monetize any user data. We access third-party platform APIs solely to post content on behalf of the operator who configured the tool. No personal data from end-users is collected or stored.
+  </div>
+
+  <!-- ─── 1 ─── -->
+  <h2>1. Who We Are</h2>
+  <p>
+    Lo-Fi Studio ("the Application," "we," "us") is an open-source automation tool that generates lo-fi music using AI services, renders it into videos, and distributes the content to social media platforms including Pinterest, YouTube, and others. The Application is operated by its developer for personal and creative use.
+  </p>
+  <p>
+    <strong>Developer contact:</strong> <a href="mailto:katop22@gmail.com">katop22@gmail.com</a><br />
+    <strong>Application website:</strong> <a href="https://katop22.github.io/lofi-studio/">https://katop22.github.io/lofi-studio/</a>
+  </p>
+
+  <!-- ─── 2 ─── -->
+  <h2>2. Scope of This Policy</h2>
+  <p>This Privacy Policy describes how Lo-Fi Studio handles data when using third-party APIs, including the <strong>Pinterest API v5</strong>. It applies to:</p>
+  <ul>
+    <li>The operator of the Application (the person running the software on their own machine)</li>
+    <li>Any third-party platform accounts connected to the Application</li>
+  </ul>
+  <p>This Application does <strong>not</strong> have end-users, public registrations, or a consumer-facing web service. It is a developer tool that runs locally.</p>
+
+  <!-- ─── 3 ─── -->
+  <h2>3. Data We Access via the Pinterest API</h2>
+  <p>When configured with a valid Pinterest access token, Lo-Fi Studio uses the Pinterest API v5 to:</p>
+  <ul>
+    <li><strong>Read boards:</strong> Retrieve the list of Pinterest boards belonging to the authenticated account, in order to select the target board for new Pins.</li>
+    <li><strong>Create Pins:</strong> Post new Pins to the selected board, including an image thumbnail, title, description, and a link to the associated music video.</li>
+  </ul>
+
+  <h3>What data is read from Pinterest</h3>
+  <ul>
+    <li>Board names and board IDs of the authenticated account</li>
+    <li>The authenticated user's account identifier (used solely to confirm authentication)</li>
+  </ul>
+
+  <h3>What data is written to Pinterest</h3>
+  <ul>
+    <li>Pin title: an AI-generated title for the lo-fi music track</li>
+    <li>Pin description: an AI-generated caption describing the music</li>
+    <li>Pin link: a URL to the associated YouTube video</li>
+    <li>Pin image: a URL pointing to the AI-generated artwork for the track</li>
+  </ul>
+
+  <!-- ─── 4 ─── -->
+  <h2>4. How We Store and Protect Pinterest Data</h2>
+  <p>Lo-Fi Studio stores the following Pinterest-related information locally on the operator's machine:</p>
+  <ul>
+    <li><strong>Pinterest Access Token</strong> — stored in a local <code>.env</code> configuration file on the operator's machine. This file is <code>.gitignore</code>d and is never committed to any public repository.</li>
+    <li><strong>Pinterest Board ID</strong> — stored in the same local <code>.env</code> file.</li>
+    <li><strong>Pin URLs</strong> — stored in Airtable (the operator's own Airtable base) after a Pin is successfully created, for record-keeping and idempotency purposes.</li>
+  </ul>
+
+  <div class="highlight">
+    We do <strong>not</strong> transmit Pinterest access tokens or board data to any server we operate. All API calls are made directly from the operator's machine to Pinterest's servers using official Pinterest API endpoints.
+  </div>
+
+  <!-- ─── 5 ─── -->
+  <h2>5. Other Third-Party Services</h2>
+  <p>Lo-Fi Studio also integrates with the following services. Data handling for each is governed by that service's own privacy policy.</p>
+
+  <h3>Airtable</h3>
+  <p>Used to store track metadata, generated URLs, and posting logs. All data stored in Airtable belongs to the operator's own Airtable workspace. Privacy policy: <a href="https://www.airtable.com/privacy" target="_blank" rel="noopener">airtable.com/privacy</a></p>
+
+  <h3>YouTube (Google APIs)</h3>
+  <p>Used to upload rendered music videos. Authentication is handled via Google OAuth 2.0. The Application stores only a refresh token (locally in <code>.env</code>). Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+
+  <h3>Suno AI</h3>
+  <p>Used to generate lo-fi music tracks based on text prompts. No personal data is transmitted to Suno AI beyond the music generation prompt. Privacy policy: <a href="https://suno.com/privacy-policy" target="_blank" rel="noopener">suno.com/privacy-policy</a></p>
+
+  <h3>Ollama (local AI)</h3>
+  <p>Used locally on the operator's machine to generate captions and descriptions. No data is sent to external servers. Ollama runs entirely offline.</p>
+
+  <h3>X (Twitter)</h3>
+  <p>Used to post text-only tweets. Authentication uses OAuth 1.0a tokens stored locally. Privacy policy: <a href="https://x.com/privacy" target="_blank" rel="noopener">x.com/privacy</a></p>
+
+  <!-- ─── 6 ─── -->
+  <h2>6. Data Retention</h2>
+  <p>Lo-Fi Studio does not operate a data retention policy on behalf of third parties because it does not collect end-user data. The operator controls:</p>
+  <ul>
+    <li>Local files stored on their machine (deletable at any time)</li>
+    <li>Records stored in their own Airtable base (deletable via Airtable)</li>
+    <li>Content posted to Pinterest, YouTube, and other platforms (deletable via those platforms)</li>
+  </ul>
+
+  <!-- ─── 7 ─── -->
+  <h2>7. Pinterest API Data Deletion</h2>
+  <p>In compliance with Pinterest's API terms, we provide the following data deletion options:</p>
+  <ul>
+    <li><strong>Revoke access:</strong> Go to your Pinterest account settings → Security → Apps with access, and revoke Lo-Fi Studio's access. This immediately invalidates the access token.</li>
+    <li><strong>Delete Pins:</strong> Any Pins created by the Application can be deleted directly from your Pinterest account at any time.</li>
+    <li><strong>Request data deletion:</strong> Contact us at <a href="mailto:katop22@gmail.com">katop22@gmail.com</a> and we will provide instructions to remove any stored references to your Pinterest data from the local Airtable records.</li>
+  </ul>
+
+  <!-- ─── 8 ─── -->
+  <h2>8. No Sale or Sharing of Data</h2>
+  <p>We do not sell, rent, trade, or otherwise transfer any data obtained via the Pinterest API (or any other platform API) to third parties. Data accessed through platform APIs is used solely to perform the automation tasks described in this policy.</p>
+
+  <!-- ─── 9 ─── -->
+  <h2>9. Children's Privacy</h2>
+  <p>Lo-Fi Studio is a developer tool not intended for use by children under the age of 13. We do not knowingly collect any information from children. All content generated by the Application (lo-fi music for studying and relaxing) is suitable for general audiences.</p>
+
+  <!-- ─── 10 ─── -->
+  <h2>10. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Material changes will be reflected by an updated "Last updated" date at the top of this page. Continued use of the Application after changes are posted constitutes acceptance of the revised policy.</p>
+
+  <!-- ─── 11 ─── -->
+  <h2>11. Contact</h2>
+  <p>For any questions, concerns, or data deletion requests regarding this Privacy Policy, please contact:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:katop22@gmail.com">katop22@gmail.com</a></li>
+    <li><strong>GitHub:</strong> <a href="https://github.com/katop22/lofi-studio" target="_blank" rel="noopener">github.com/katop22/lofi-studio</a></li>
+  </ul>
+
+  <p style="margin-top:3rem; font-family:sans-serif; font-size:.85rem; color:var(--muted);">
+    This Privacy Policy was prepared in good faith for the Lo-Fi Studio open-source project and its use of third-party APIs, including the Pinterest API v5. It complies with Pinterest's API terms of service requirements regarding privacy disclosures.
+  </p>
+</main>
+
+<footer>
+  <p style="color: var(--muted);">&copy; 2026 Lo-Fi Studio &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mailto:katop22@gmail.com">Contact</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║          LO-FI STUDIO — Pinterest Developer Portal Application Text         ║
+║          Copy-paste each field directly into the Pinterest application form ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+All URLs below assume GitHub Pages is enabled on the lofi-studio repository.
+Verify your GitHub username and enable Pages at:
+  GitHub repo → Settings → Pages → Source: Deploy from branch (main, /docs)
+Resulting base URL: https://katop22.github.io/lofi-studio/
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION A — REQUIRED FORM FIELDS
+══════════════════════════════════════════════════════════════════════════════
+
+App Name:
+  Lo-Fi Studio
+
+App Type:
+  Standard  (NOT "Marketing API")
+
+Website URL:
+  https://katop22.github.io/lofi-studio/
+
+Privacy Policy URL:
+  https://katop22.github.io/lofi-studio/privacy.html
+
+Contact Email:
+  katop22@gmail.com
+
+Redirect URI (OAuth callback — required even for PAT apps):
+  https://localhost/callback
+  (Add this exactly as shown. Pinterest requires at least one redirect URI
+   even when using Personal Access Tokens.)
+
+App Icon / Logo:
+  Upload a 512×512 PNG of the Lo-Fi Studio logo or any lo-fi-themed icon.
+  A simple image of headphones + musical notes on a dark background works well.
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION B — APP DESCRIPTION
+  (Use for "Description", "App Description", or "Tell us about your app")
+══════════════════════════════════════════════════════════════════════════════
+
+Lo-Fi Studio is an open-source creative automation tool that generates
+lo-fi study music using AI and distributes it to social platforms, including
+Pinterest. The application uses the Pinterest API v5 to create Pins that link
+lo-fi music videos to Pinterest boards focused on study music, chill vibes,
+and relaxing beats — helping audiences on Pinterest discover calming,
+focus-enhancing content.
+
+The tool works as follows:
+1. AI-generated lo-fi music tracks are produced using Suno AI.
+2. Atmospheric artwork is generated using Stable Diffusion.
+3. The audio and artwork are combined into a music video using FFmpeg.
+4. The Pinterest API is used to post a Pin containing the artwork image,
+   an AI-generated description, and a link to the YouTube video for the track.
+
+Pinterest is used exclusively to share original lo-fi music content with
+audiences interested in study music, ambient beats, and chill lo-fi hip-hop.
+All content is original, non-commercial, and suitable for all audiences.
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION C — USE CASE DESCRIPTION
+  (For "How will you use the Pinterest API?" or similar open-ended fields)
+══════════════════════════════════════════════════════════════════════════════
+
+Lo-Fi Studio uses the Pinterest API v5 for two specific operations:
+
+1. READING BOARDS (boards:read scope)
+   The application reads the authenticated user's list of Pinterest boards
+   to identify the correct target board for posting lo-fi music Pins.
+   This is a one-time setup operation performed during initial configuration.
+
+2. CREATING PINS (pins:write scope)
+   When a new lo-fi music track is ready for distribution, the application
+   creates one Pin per track. Each Pin includes:
+   - Image: AI-generated artwork for the track (linked by URL)
+   - Title: The track name (e.g., "Moonlit Harbor Drift")
+   - Description: An AI-generated emotive description of the music
+   - Link: The YouTube URL for the full music video
+
+The application does NOT:
+- Access or modify other users' accounts or boards
+- Collect or store Pinterest user data beyond the board ID used for posting
+- Post on behalf of multiple users (single-account operator tool)
+- Use Pinterest for advertising, analytics, or commercial promotion
+- Access any Pinterest advertising or shopping APIs
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION D — REQUIRED API SCOPES (with justifications)
+══════════════════════════════════════════════════════════════════════════════
+
+Request ONLY these scopes:
+
+  boards:read
+  Justification: Required to list the authenticated user's boards and select
+  the appropriate target board for lo-fi music Pins during setup.
+
+  pins:write
+  Justification: Required to create new Pins when a lo-fi music track is
+  ready for distribution. Each Pin links to an AI-generated music video.
+
+DO NOT request:
+  - boards:write   (not needed — we only read boards, never create/edit them)
+                   [Exception: Request this ONLY if auto-board-creation is needed]
+  - pins:read      (not needed — we never read existing Pins)
+  - user_accounts:read  (not needed — we don't use profile data)
+  - ads:*          (never needed — this is not an advertising application)
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION E — SAMPLE CONTENT / SCREENSHOTS
+  (If the form asks for examples of what you'll post)
+══════════════════════════════════════════════════════════════════════════════
+
+Content type: Music discovery Pins
+
+Example Pin:
+  Title: "Moonlit Harbor Drift ☕ Lo-Fi Beats to Study/Relax To"
+  Description: "Lose yourself in the warm, intimate sounds of 'Moonlit Harbor
+  Drift' — a late-night lo-fi loop for study sessions and quiet evenings.
+  🎧 #lofi #studymusic #chillbeats #focusmusic #lofihiphop"
+  Link: https://youtu.be/[video-id]
+  Image: AI-generated artwork of a cozy harbor scene at night
+
+Target boards: boards focused on lo-fi music, study playlists, chill vibes,
+ambient music, or focus/productivity content.
+
+All Pins are original content — the music, artwork, and descriptions are
+all generated specifically for this project and are not scraped, repurposed,
+or copied from other sources.
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION F — TROUBLESHOOTING / APP TYPE FIX
+══════════════════════════════════════════════════════════════════════════════
+
+If you see error code 3 ("consumer type not supported"):
+
+  1. Go to: https://developers.pinterest.com/apps/
+  2. Click your app → App Settings
+  3. Confirm App Type is set to "Standard"
+     - If it shows "Marketing API": you need to create a NEW app
+       (Marketing API apps cannot access organic content endpoints)
+     - If it shows "Standard": check that your app has been submitted
+       for review and approved (or use it in development mode)
+  4. After confirming Standard type, regenerate your Personal Access Token:
+     App Settings → Generate Access Token
+     → Select scopes: boards:read, pins:write (add boards:write if needed)
+     → Click "Generate"
+  5. Copy the new pina_... token into your .env file:
+     PINTEREST_ACCESS_TOKEN=pina_your_new_token_here
+  6. Run the setup script:
+     node scripts/setup-pinterest.js
+  7. Ship test:
+     npm run ship -- --channels pinterest --force --record YOUR_RECORD_ID
+
+
+══════════════════════════════════════════════════════════════════════════════
+  SECTION G — GITHUB PAGES ACTIVATION STEPS
+  (Enable the public website before submitting the Pinterest application)
+══════════════════════════════════════════════════════════════════════════════
+
+1. Push the lofi-studio repo to GitHub (if not already done):
+     git remote add origin https://github.com/katop22/lofi-studio.git
+     git add docs/
+     git commit -m "Add GitHub Pages site and privacy policy"
+     git push -u origin main
+
+2. In the GitHub repository:
+     Settings → Pages → Source: "Deploy from a branch"
+     Branch: main  |  Folder: /docs
+     Click Save
+
+3. Wait 1-2 minutes, then verify:
+     https://katop22.github.io/lofi-studio/         ← home page
+     https://katop22.github.io/lofi-studio/privacy.html  ← privacy policy
+
+4. Both URLs must be live and accessible BEFORE submitting the Pinterest
+   developer application.
+
+══════════════════════════════════════════════════════════════════════════════
+  Generated by Lo-Fi Studio | 2026-06-07
+══════════════════════════════════════════════════════════════════════════════

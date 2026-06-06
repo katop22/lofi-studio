@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lo-Fi Studio — AI-powered lo-fi music generation and multi-platform distribution. Create chill beats and share them across YouTube, Pinterest, and more." />
+  <meta name="robots" content="index, follow" />
+  <title>Lo-Fi Studio — AI-Powered Lo-Fi Music Distribution</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f0f14;
+      --bg2:      #16161f;
+      --bg3:      #1e1e2a;
+      --amber:    #f0a500;
+      --amber2:   #ffcc55;
+      --text:     #e8e4d9;
+      --muted:    #8b8575;
+      --radius:   12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber2); text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,15,20,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #2a2a38;
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: bold; color: var(--amber); letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links a { color: var(--muted); font-family: sans-serif; font-size: .9rem; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, #1a1408 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #2a2010; color: var(--amber);
+      border: 1px solid #3a3020; border-radius: 99px;
+      font-family: sans-serif; font-size: .8rem; letter-spacing: .08em;
+      padding: .3rem 1rem; margin-bottom: 1.6rem;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      color: #fff; line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero p {
+      max-width: 580px; margin: 0 auto 2.5rem;
+      color: var(--muted); font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--amber); color: #0f0f14;
+      font-family: sans-serif; font-weight: 700;
+      padding: .75rem 2rem; border-radius: var(--radius);
+      font-size: 1rem; transition: background .2s;
+    }
+    .btn:hover { background: var(--amber2); text-decoration: none; }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid #3a3a50;
+      margin-left: 1rem;
+    }
+    .btn-ghost:hover { background: #1e1e2a; }
+
+    /* ── SECTION ─────────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: sans-serif; font-size: .8rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: #fff; margin-bottom: 1rem;
+    }
+    .section-body { color: var(--muted); max-width: 640px; }
+
+    /* ── FEATURES GRID ───────────────────────────────── */
+    .features { background: var(--bg2); }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .feat-card {
+      background: var(--bg3); border: 1px solid #2a2a38;
+      border-radius: var(--radius); padding: 1.8rem;
+    }
+    .feat-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feat-card h3 { color: #fff; margin-bottom: .5rem; font-size: 1.05rem; }
+    .feat-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+
+    /* ── HOW IT WORKS ────────────────────────────────── */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      margin-bottom: 2.5rem;
+    }
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 2.4rem; height: 2.4rem;
+      background: #2a2010; border: 1px solid var(--amber);
+      border-radius: 50%; color: var(--amber);
+      font-family: sans-serif; font-weight: 700;
+      display: grid; place-items: center;
+      font-size: 1rem;
+    }
+    .step-num::before { content: counter(step); }
+    .step-body h3 { color: #fff; margin-bottom: .3rem; }
+    .step-body p { color: var(--muted); font-size: .95rem; }
+
+    /* ── PLATFORMS ───────────────────────────────────── */
+    .platforms { background: var(--bg2); }
+    .platform-pills {
+      display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem;
+    }
+    .pill {
+      background: var(--bg3); border: 1px solid #2a2a38;
+      border-radius: 99px; padding: .5rem 1.2rem;
+      font-family: sans-serif; font-size: .9rem; color: var(--text);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid #2a2a38;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    footer .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-family: sans-serif; font-size: .9rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    footer p { color: var(--muted); font-size: .85rem; font-family: sans-serif; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">🎵 Lo-Fi Studio</span>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#platforms">Platforms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Open Source · Free · AI-Powered</div>
+  <h1>Automate Your<br /><span>Lo-Fi Music</span> Journey</h1>
+  <p>Lo-Fi Studio generates chill lo-fi beats with AI, renders them into atmospheric videos, and distributes them across YouTube, Pinterest, and more — fully automated.</p>
+  <a class="btn" href="https://github.com/katop22/lofi-studio">View on GitHub</a>
+  <a class="btn btn-ghost" href="#how-it-works">See How It Works</a>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Everything You Need to Share Lo-Fi Music</h2>
+    <p class="section-body">A complete pipeline from AI music generation to social media distribution — no manual work required.</p>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🎵</div>
+        <h3>AI Music Generation</h3>
+        <p>Generate high-quality lo-fi beats using Suno AI. Customize mood, style, and instrumentation with natural language prompts.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🎨</div>
+        <h3>AI Artwork Creation</h3>
+        <p>Automatically generate atmospheric artwork using Stable Diffusion. Each track gets a unique visual identity.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🎬</div>
+        <h3>Video Rendering</h3>
+        <p>Combine artwork and audio into polished lo-fi videos with Ken Burns effects using FFmpeg — ready for any platform.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📌</div>
+        <h3>Pinterest Distribution</h3>
+        <p>Automatically create beautiful Pins linking to your music videos. Reach lo-fi enthusiasts searching for study music.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">▶️</div>
+        <h3>YouTube Upload</h3>
+        <p>Upload rendered videos directly to YouTube with AI-generated titles, descriptions, and tags optimized for discovery.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">💬</div>
+        <h3>AI Captions</h3>
+        <p>Ollama generates unique, emotive social media captions for each track — tailored per platform, no copy-paste required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <p class="section-label">The Pipeline</p>
+    <h2 class="section-title">From Prompt to Published in Minutes</h2>
+    <p class="section-body" style="margin-bottom:3rem;">Lo-Fi Studio handles the entire creative and distribution pipeline end-to-end.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Generate Music</h3>
+          <p>Describe the vibe you want and Suno AI produces a full lo-fi track — instrumental, high quality, ready for distribution.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Create Artwork</h3>
+          <p>Stable Diffusion generates atmospheric scene artwork — cozy rooms, rain-swept windows, moonlit desks — matched to the music mood.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Render Video</h3>
+          <p>FFmpeg combines the audio and artwork into a 16:9 video with gentle Ken Burns motion — optimized for streaming platforms.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Generate Captions</h3>
+          <p>Ollama writes platform-specific captions, hashtags, and descriptions — evocative, on-brand, and SEO-friendly for each channel.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Distribute Everywhere</h3>
+          <p>One command ships the track to YouTube, Pinterest, X, and more — with idempotent write-back so re-runs never double-post.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms" id="platforms">
+  <div class="section-inner">
+    <p class="section-label">Distribution</p>
+    <h2 class="section-title">Publish Where Your Audience Lives</h2>
+    <p class="section-body">Lo-Fi Studio posts to multiple platforms in a single run, adapting content format and captions to each channel's best practices.</p>
+    <div class="platform-pills">
+      <span class="pill">▶️ YouTube</span>
+      <span class="pill">📌 Pinterest</span>
+      <span class="pill">✖️ X (Twitter)</span>
+      <span class="pill">📸 Instagram Reels</span>
+      <span class="pill">🎵 TikTok</span>
+      <span class="pill">🧵 Threads</span>
+      <span class="pill">🤖 Reddit</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/katop22/lofi-studio">GitHub</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:katop22@gmail.com">Contact</a>
+    </div>
+    <p>&copy; 2026 Lo-Fi Studio. Open source under the MIT License.</p>
+  </div>
+</footer>
+
+</body>
+</html>

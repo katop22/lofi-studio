@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+ui/.venv/
+__pycache__/
+*.pyc
+
+# Environment / secrets — NEVER commit real credentials
+.env
+.env.local
+*.env
+
+# Generated audio / artwork / video output (large binary files)
+output/
+*.mp3
+*.wav
+*.mp4
+*.flac
+
+# Claude Code local memory (personal notes, not for public)
+.claude/
+
+# TikTok domain-verification files (served by the local static server only)
+public/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

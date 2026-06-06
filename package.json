@@ -1,0 +1,31 @@
+{
+  "name": "lofi-studio",
+  "version": "0.1.0",
+  "scripts": {
+    "generate": "node src/index.js",
+    "render": "node src/render.js",
+    "ship": "node src/ship.js",
+    "caption:preview": "node src/caption-preview.js",
+    "auth:youtube": "node src/auth/youtube-auth.js",
+    "serve:static": "node src/static-server.js",
+    "auth:tiktok": "node src/auth/tiktok-auth.js",
+    "test:tiktok": "node src/auth/tiktok-test.js",
+    "setup:airtable": "node src/setup-airtable.js",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "Automated Lo-Fi music generation and distribution system",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "airtable": "^0.12.2",
+    "dotenv": "^16.6.1",
+    "ffmpeg-static": "^5.3.0",
+    "googleapis": "^144.0.0",
+    "twitter-api-v2": "^1.29.0"
+  }
+}
